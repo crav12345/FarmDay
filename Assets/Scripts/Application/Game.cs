@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
         var gameRoomSerializer = gameRoom.GetComponent<GameRoomSerializer>();
         var tileInstantiator = gameRoomSerializer.TileInstantiator;
 
-        tileInstantiator.Initialize();
+        tileInstantiator.Initialize(storeController);
     }
 
     public void Run()
