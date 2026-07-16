@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 999132766}
   - component: {fileID: 999132765}
   - component: {fileID: 999132764}
+  - component: {fileID: 999132767}
   m_Layer: 5
   m_Name: FieldButton
   m_TagString: Untagged
@@ -521,6 +522,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999132762}
   m_CullTransparentMesh: 1
+--- !u!114 &999132767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999132762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f705328014fe413984e305cb2f95fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Draggable
 --- !u!1 &1178476463
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +759,7 @@ GameObject:
   - component: {fileID: 2035447771}
   - component: {fileID: 2035447770}
   - component: {fileID: 2035447769}
+  - component: {fileID: 2035447772}
   m_Layer: 5
   m_Name: StoreButton
   m_TagString: Untagged
@@ -867,6 +881,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035447767}
   m_CullTransparentMesh: 1
+--- !u!114 &2035447772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035447767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f705328014fe413984e305cb2f95fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
