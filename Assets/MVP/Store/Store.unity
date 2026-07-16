@@ -534,6 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f705328014fe413984e305cb2f95fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Draggable
+  _dragCanvas: {fileID: 475452141}
 --- !u!1 &1178476463
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,6 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f705328014fe413984e305cb2f95fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _dragCanvas: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
