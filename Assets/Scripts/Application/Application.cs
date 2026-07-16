@@ -18,7 +18,6 @@ public class Application : MonoBehaviour
     private IEnumerator BootstrapCoroutine()
     {
         yield return _game.Load();
-        yield return new WaitForSeconds(5);
 
         _loadingCanvas.enabled = false;
     }
