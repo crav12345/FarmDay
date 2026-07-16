@@ -6,13 +6,20 @@ public class StoreView : MonoBehaviour
     [SerializeField] private RectTransform _storeIcon;
     [SerializeField] private RectTransform _storePanel;
 
+    private float _storePanelX;
+    private float _storeIconX;
+
+    private void Start()
+    {
+        _storePanelX = _storePanel.position.x;
+        _storeIconX = _storeIcon.position.x;
+    }
+
     public void ToggleStore(bool enabled)
     {
-        var iconX = _storeIcon.anchoredPosition.x;
-        var iconTarget = enabled ? iconX + 200 : iconX - 200;
+        var iconTarget = enabled ? _storeIconX + 310 : _storeIconX;
 
-        var panelX = _storePanel.anchoredPosition.x;
-        var panelTarget = enabled ? panelX + 200 : panelX - 200;
+        var panelTarget = enabled ? _storePanelX + 550 : _storePanelX;
 
         _storeIcon.DOMoveX(iconTarget, 0.5f);
         _storePanel.DOMoveX(panelTarget, 0.5f);
