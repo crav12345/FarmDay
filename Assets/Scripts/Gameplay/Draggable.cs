@@ -27,7 +27,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private void SetDraggedPosition(PointerEventData data)
     {
         if (data.pointerEnter != null && data.pointerEnter.transform as RectTransform != null)
+        {
             _draggingPlane = data.pointerEnter.transform as RectTransform;
+        }
 
         var dragIconRt = _dragIcon.rectTransform;
 
