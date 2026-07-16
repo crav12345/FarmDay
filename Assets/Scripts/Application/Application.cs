@@ -19,6 +19,8 @@ public class Application : MonoBehaviour
     {
         yield return _game.Load();
 
+        yield return new WaitForSeconds(3);
+
         _loadingCanvas.enabled = false;
     }
 }
