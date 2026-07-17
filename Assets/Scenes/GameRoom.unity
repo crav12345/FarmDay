@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 500761438}
   - component: {fileID: 500761440}
   - component: {fileID: 500761439}
+  - component: {fileID: 500761441}
   m_Layer: 0
   m_Name: StaticItemMap
   m_TagString: Untagged
@@ -343,6 +344,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &500761441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500761437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb5e1f7251534814a516dba08f90bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileMapClickHandler
+  _camera: {fileID: 0}
+  _tilemap: {fileID: 500761440}
 --- !u!1 &657071308
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +369,7 @@ GameObject:
   - component: {fileID: 657071309}
   - component: {fileID: 657071311}
   - component: {fileID: 657071310}
+  - component: {fileID: 657071312}
   m_Layer: 0
   m_Name: FieldsMap
   m_TagString: Untagged
@@ -498,6 +514,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &657071312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657071308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb5e1f7251534814a516dba08f90bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileMapClickHandler
+  _camera: {fileID: 0}
+  _tilemap: {fileID: 657071311}
 --- !u!1 &727016413
 GameObject:
   m_ObjectHideFlags: 0
@@ -19428,6 +19458,7 @@ GameObject:
   - component: {fileID: 1598304588}
   - component: {fileID: 1598304590}
   - component: {fileID: 1598304589}
+  - component: {fileID: 1598304591}
   m_Layer: 0
   m_Name: BuildingsMap
   m_TagString: Untagged
@@ -19572,6 +19603,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1598304591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598304587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb5e1f7251534814a516dba08f90bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileMapClickHandler
+  _camera: {fileID: 0}
+  _tilemap: {fileID: 1598304590}
 --- !u!1 &1677834928
 GameObject:
   m_ObjectHideFlags: 0
