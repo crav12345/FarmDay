@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private enum TileType
+    {
+        Building,
+        Field
+    }
+
     [SerializeField] private Image _dragIcon;
     [SerializeField] private TileBase _highlightTile;
     [SerializeField] private TileBase _tileToPlace;
+    [SerializeField] private TileType _tileType;
 
     private RectTransform _draggingPlane;
     private Tilemap _highlightsMap;
-    private Tilemap _placeItemsMap;
+    private Tilemap _fieldsMap;
     private Tilemap _staticItemsMap;
+    private Tilemap _buildingsMap;
     private Camera _camera;
     private Vector3Int _highlightedCell;
     private bool _hasHighlightedCell;
@@ -21,7 +29,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         _camera = camera;
         _highlightsMap = serializer.HighlightsMap;
-        _placeItemsMap = serializer.PlacedItemsMap;
+        _fieldsMap = serializer.FieldsMap;
+        _buildingsMap = serializer.BuildingsMap;
         _staticItemsMap = serializer.StaticItemsMap;
     }
 
@@ -114,13 +123,13 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
 
         var highlightedCellCenter = _highlightsMap.GetCellCenterWorld(_highlightedCell);
-        var placementCell = _placeItemsMap.WorldToCell(highlightedCellCenter);
+        var placementCell = _fieldsMap.WorldToCell(highlightedCellCenter);
 
-        if (_placeItemsMap.HasTile(placementCell))
+        if (_fieldsMap.HasTile(placementCell))
         {
             return;
         }
 
-        _placeItemsMap.SetTile(placementCell, _tileToPlace);
+        _fieldsMap.SetTile(placementCell, _tileToPlace);
     }
 }

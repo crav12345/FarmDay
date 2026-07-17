@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/GameRoom.unity
     guid: d9b89ddffab8e4ed381dbb43ebc6cc48
   - enabled: 1
-    path: Assets/Scenes/Geometry.unity
-    guid: ff6f92bf97e13441d8eb9f25fa6954d4
-  - enabled: 1
     path: Assets/MVP/Store/Store.unity
     guid: d3b7f627a7deb4e2eb66037180c90f63
   m_configObjects:
