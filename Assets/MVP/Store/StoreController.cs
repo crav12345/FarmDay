@@ -10,11 +10,11 @@ public class StoreController : MonoBehaviour
 
     private bool _storeEnabled;
 
-    public void Initialize(GameRoomSerializer serializer)
+    public void Initialize(GameRoomSerializer serializer, Camera camera)
     {
         foreach (var draggable in _draggables)
         {
-            draggable.Initialize(serializer);
+            draggable.Initialize(serializer, camera);
         }
     }
 

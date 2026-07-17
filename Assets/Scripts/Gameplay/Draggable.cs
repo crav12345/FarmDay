@@ -9,9 +9,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private RectTransform _draggingPlane;
     private Tilemap _highlightsMap;
+    private Camera _camera;
 
-    public void Initialize(GameRoomSerializer serializer)
+    public void Initialize(GameRoomSerializer serializer, Camera camera)
     {
+        _camera = camera;
         _highlightsMap = serializer.HighlightsMap;
     }
 

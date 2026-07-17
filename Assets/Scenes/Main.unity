@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _game: {fileID: 1726747143}
+  _camera: {fileID: 519420031}
   _loadingCanvas: {fileID: 1329329035}
 --- !u!1 &511282098
 GameObject:

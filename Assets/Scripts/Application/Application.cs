@@ -7,6 +7,7 @@ using UnityEngine;
 public class Application : MonoBehaviour
 {
     [SerializeField] private Game _game;
+    [SerializeField] private Camera _camera;
     [SerializeField] private Canvas _loadingCanvas;
 
     private void Start()
@@ -17,7 +18,7 @@ public class Application : MonoBehaviour
 
     private IEnumerator BootstrapCoroutine()
     {
-        yield return _game.Load();
+        yield return _game.Load(_camera);
 
         yield return new WaitForSeconds(3);
 

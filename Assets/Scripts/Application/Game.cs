@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
     private const string GEOMETRY_SCENE_NAME = "Geometry";
     private const string STORE_SCENE_NAME = "Store";
 
-    public IEnumerator Load()
+    public IEnumerator Load(Camera camera)
     {
         yield return SceneManager.LoadSceneAsync(GAME_SCENE_NAME, LoadSceneMode.Single);
         yield return SceneManager.LoadSceneAsync(GEOMETRY_SCENE_NAME, LoadSceneMode.Additive);
@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
         var gameRoom = GameObject.Find(GAME_SCENE_NAME);
         var gameRoomSerializer = gameRoom.GetComponent<GameRoomSerializer>();
 
-        storeController.Initialize(gameRoomSerializer);
+        storeController.Initialize(gameRoomSerializer, camera);
     }
 
     public void Run()
