@@ -17,12 +17,23 @@ public class ToolsController : MonoBehaviour
         }
     }
 
+    public void CloseBulletin()
+    {
+        _ordersEnabled = false;
+        _view.ToggleBulletin(_ordersEnabled);
+    }
+
     private void OnTilePressed(string name, Vector3 worldPosition)
     {
+        if (_ordersEnabled)
+        {
+            return;
+        }
+
         switch (name)
         {
             case "orders":
-                _ordersEnabled = !_ordersEnabled;
+                _ordersEnabled = true;
                 _view.ToggleBulletin(_ordersEnabled);
                 break;
             default:
