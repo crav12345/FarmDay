@@ -7,4 +7,5 @@ public class GameRoomSerializer : MonoBehaviour
     public Tilemap FieldsMap;
     public Tilemap BuildingsMap;
     public Tilemap StaticItemsMap;
+    public TileMapClickHandler[] TileClickHandlers;
 }

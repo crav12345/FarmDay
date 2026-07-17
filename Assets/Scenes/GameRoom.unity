@@ -168,6 +168,10 @@ MonoBehaviour:
   FieldsMap: {fileID: 657071311}
   BuildingsMap: {fileID: 1598304590}
   StaticItemsMap: {fileID: 500761440}
+  TileClickHandlers:
+  - {fileID: 1598304591}
+  - {fileID: 657071312}
+  - {fileID: 500761441}
 --- !u!1 &500761437
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb5e1f7251534814a516dba08f90bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileMapClickHandler
-  _camera: {fileID: 0}
   _tilemap: {fileID: 500761440}
 --- !u!1 &657071308
 GameObject:
@@ -526,7 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb5e1f7251534814a516dba08f90bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileMapClickHandler
-  _camera: {fileID: 0}
   _tilemap: {fileID: 657071311}
 --- !u!1 &727016413
 GameObject:
@@ -19615,7 +19617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb5e1f7251534814a516dba08f90bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileMapClickHandler
-  _camera: {fileID: 0}
   _tilemap: {fileID: 1598304590}
 --- !u!1 &1677834928
 GameObject:

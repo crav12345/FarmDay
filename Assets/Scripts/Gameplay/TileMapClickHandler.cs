@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 public class TileMapClickHandler : MonoBehaviour
 {
+    public event Action<string, Vector3> TilePressed;
+
     [SerializeField] private Tilemap _tilemap;
 
     private Camera _camera;
@@ -35,18 +38,13 @@ public class TileMapClickHandler : MonoBehaviour
 
         if (mouse != null && mouse.leftButton.wasPressedThisFrame)
         {
-            LogPressedTile(mouse.position.ReadValue());
+            HandleTilePress(mouse.position.ReadValue());
         }
 #endif
     }
 
-    private void LogPressedTile(Vector2 screenPosition)
+    private void HandleTilePress(Vector2 screenPosition)
     {
-        if (_camera == null || _tilemap == null)
-        {
-            return;
-        }
-
         var touchRay = _camera.ScreenPointToRay(screenPosition);
         var tilemapPlane = new Plane(_tilemap.transform.forward, _tilemap.transform.position);
 
@@ -64,6 +62,7 @@ public class TileMapClickHandler : MonoBehaviour
         }
 
         var worldPosition = _tilemap.GetCellCenterWorld(cellPosition);
-        Debug.Log($"Tile '{tile.name}' pressed at cell {cellPosition}, world position {worldPosition}.", _tilemap);
+
+        TilePressed?.Invoke(tile.name, worldPosition);
     }
 }
