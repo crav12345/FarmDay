@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -13,10 +14,17 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Field
     }
 
+    public event Action<int> Purchased;
+
     [SerializeField] private Image _dragIcon;
     [SerializeField] private TileBase _highlightTile;
     [SerializeField] private TileBase _tileToPlace;
     [SerializeField] private TileType _tileType;
+    [SerializeField] private int _cost;
+    [SerializeField] private Button _button;
+
+    public int Cost => _cost;
+    public Button Button => _button;
 
     private RectTransform _draggingPlane;
     private Tilemap _highlightsMap;
@@ -49,6 +57,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!_button.interactable)
+        {
+            return;
+        }
+
         _dragIcon.enabled = true;
         SetDraggedPosition(eventData);
         SetHighlightedTile(eventData.position);
@@ -56,12 +69,20 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!_button.interactable)
+        {
+            return;
+        }
         SetDraggedPosition(eventData);
         SetHighlightedTile(eventData.position);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!_button.interactable)
+        {
+            return;
+        }
         _dragIcon.enabled = false;
         SetHighlightedTile(eventData.position);
         TryPlaceTile();
@@ -130,7 +151,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private void TryPlaceTile()
     {
-        if (!_hasHighlightedCell || _myMap == null || _tileToPlace == null)
+        if (!_hasHighlightedCell)
         {
             return;
         }
@@ -148,6 +169,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         var placementCell = _myMap.WorldToCell(highlightedCellCenter);
         _myMap.SetTile(placementCell, _tileToPlace);
+
+        Purchased?.Invoke(_cost);
     }
 
     private static bool HasTileAtWorldPosition(Tilemap tilemap, Vector3 worldPosition)

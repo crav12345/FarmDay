@@ -1,10 +1,12 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class StoreView : MonoBehaviour
 {
     [SerializeField] private RectTransform _storeIcon;
     [SerializeField] private RectTransform _storePanel;
+    [SerializeField] private TextMeshProUGUI _coinText;
 
     private float _storePanelX;
     private float _storeIconX;
@@ -23,5 +25,10 @@ public class StoreView : MonoBehaviour
 
         _storeIcon.DOMoveX(iconTarget, 0.5f);
         _storePanel.DOMoveX(panelTarget, 0.5f);
+    }
+
+    public void SetCoinText(string text)
+    {
+        _coinText.text = text;
     }
 }
