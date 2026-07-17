@@ -6,11 +6,13 @@ public class Game : MonoBehaviour
 {
     private const string GAME_SCENE_NAME = "GameRoom";
     private const string STORE_SCENE_NAME = "Store";
+    private const string ORDERS_SCENE_NAME = "Orders";
 
     public IEnumerator Load(Camera camera)
     {
         yield return SceneManager.LoadSceneAsync(GAME_SCENE_NAME, LoadSceneMode.Single);
         yield return SceneManager.LoadSceneAsync(STORE_SCENE_NAME, LoadSceneMode.Additive);
+        yield return SceneManager.LoadSceneAsync(ORDERS_SCENE_NAME, LoadSceneMode.Additive);
 
         var storeLevel = GameObject.Find(STORE_SCENE_NAME);
         var storeController = storeLevel.GetComponent<StoreController>();
