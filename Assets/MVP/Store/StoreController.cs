@@ -1,10 +1,7 @@
-using System;
 using UnityEngine;
 
 public class StoreController : MonoBehaviour
 {
-    public event Action FieldBought;
-
     [SerializeField] private StoreView _view;
     [SerializeField] private Draggable[] _draggables;
 
@@ -22,10 +19,5 @@ public class StoreController : MonoBehaviour
     {
         _storeEnabled = !_storeEnabled;
         _view.ToggleStore(_storeEnabled);
-    }
-
-    public void BuyField()
-    {
-        FieldBought?.Invoke();
     }
 }

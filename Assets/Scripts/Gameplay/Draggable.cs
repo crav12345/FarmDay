@@ -7,9 +7,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     [SerializeField] private Image _dragIcon;
     [SerializeField] private TileBase _highlightTile;
+    [SerializeField] private TileBase _tileToPlace;
 
     private RectTransform _draggingPlane;
     private Tilemap _highlightsMap;
+    private Tilemap _placeItemsMap;
     private Camera _camera;
     private Vector3Int _highlightedCell;
     private bool _hasHighlightedCell;
@@ -18,6 +20,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         _camera = camera;
         _highlightsMap = serializer.HighlightsMap;
+        _placeItemsMap = serializer.PlacedItemsMap;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -36,6 +39,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         _dragIcon.enabled = false;
+        SetHighlightedTile(eventData.position);
+        TryPlaceTile();
         ClearHighlightedTile();
     }
 
@@ -102,5 +107,23 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
 
         _hasHighlightedCell = false;
+    }
+
+    private void TryPlaceTile()
+    {
+        if (!_hasHighlightedCell || _highlightsMap == null || _placeItemsMap == null || _tileToPlace == null)
+        {
+            return;
+        }
+
+        var highlightedCellCenter = _highlightsMap.GetCellCenterWorld(_highlightedCell);
+        var placementCell = _placeItemsMap.WorldToCell(highlightedCellCenter);
+
+        if (_placeItemsMap.HasTile(placementCell))
+        {
+            return;
+        }
+
+        _placeItemsMap.SetTile(placementCell, _tileToPlace);
     }
 }
