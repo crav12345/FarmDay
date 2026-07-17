@@ -538,6 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Draggable
   _dragIcon: {fileID: 1904556564}
+  _highlightTile: {fileID: 11400000, guid: 15fe4510a8f2c46c19d00eea460fe341, type: 2}
 --- !u!1 &1178476463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,6 +1076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _dragIcon: {fileID: 0}
+  _highlightTile: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

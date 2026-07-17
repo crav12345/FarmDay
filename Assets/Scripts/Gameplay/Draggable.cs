@@ -6,10 +6,13 @@ using UnityEngine.UI;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private Image _dragIcon;
+    [SerializeField] private TileBase _highlightTile;
 
     private RectTransform _draggingPlane;
     private Tilemap _highlightsMap;
     private Camera _camera;
+    private Vector3Int _highlightedCell;
+    private bool _hasHighlightedCell;
 
     public void Initialize(GameRoomSerializer serializer, Camera camera)
     {
@@ -21,16 +24,24 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         _dragIcon.enabled = true;
         SetDraggedPosition(eventData);
+        SetHighlightedTile(eventData.position);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         SetDraggedPosition(eventData);
+        SetHighlightedTile(eventData.position);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         _dragIcon.enabled = false;
+        ClearHighlightedTile();
+    }
+
+    private void OnDisable()
+    {
+        ClearHighlightedTile();
     }
 
     private void SetDraggedPosition(PointerEventData data)
@@ -47,5 +58,49 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             dragIconRt.position = globalMousePos;
             dragIconRt.rotation = _draggingPlane.rotation;
         }
+    }
+
+    private void SetHighlightedTile(Vector2 screenPosition)
+    {
+        if (_camera == null || _highlightsMap == null || _highlightTile == null)
+        {
+            return;
+        }
+
+        var pointerRay = _camera.ScreenPointToRay(screenPosition);
+        var tilemapPlane = new Plane(_highlightsMap.transform.forward, _highlightsMap.transform.position);
+
+        if (!tilemapPlane.Raycast(pointerRay, out var distance))
+        {
+            ClearHighlightedTile();
+            return;
+        }
+
+        var cell = _highlightsMap.WorldToCell(pointerRay.GetPoint(distance));
+
+        if (_hasHighlightedCell && cell == _highlightedCell)
+        {
+            return;
+        }
+
+        ClearHighlightedTile();
+        _highlightsMap.SetTile(cell, _highlightTile);
+        _highlightedCell = cell;
+        _hasHighlightedCell = true;
+    }
+
+    private void ClearHighlightedTile()
+    {
+        if (!_hasHighlightedCell)
+        {
+            return;
+        }
+
+        if (_highlightsMap != null)
+        {
+            _highlightsMap.SetTile(_highlightedCell, null);
+        }
+
+        _hasHighlightedCell = false;
     }
 }
