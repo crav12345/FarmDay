@@ -19,8 +19,8 @@ public class StoreView : MonoBehaviour
 
     public void ToggleStore(bool enabled)
     {
+        // TODO: Based on screen width instead of set values.
         var iconTarget = enabled ? _storeIconX + 310 : _storeIconX;
-
         var panelTarget = enabled ? _storePanelX + 550 : _storePanelX;
 
         _storeIcon.DOMoveX(iconTarget, 0.5f);
