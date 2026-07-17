@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private const int MINIMUM_DISTANCE_FROM_BUILDINGS_AND_STATIC_ITEMS = 2;
-
     private enum TileType
     {
         Building,
@@ -160,9 +158,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         if (HasTileAtWorldPosition(_buildingsMap, highlightedCellCenter) ||
             HasTileAtWorldPosition(_staticItemsMap, highlightedCellCenter) ||
-            HasTileAtWorldPosition(_fieldsMap, highlightedCellCenter) ||
-            IsTooCloseToOccupiedTile(_buildingsMap, highlightedCellCenter) ||
-            IsTooCloseToOccupiedTile(_staticItemsMap, highlightedCellCenter))
+            HasTileAtWorldPosition(_fieldsMap, highlightedCellCenter))
         {
             return;
         }
@@ -176,34 +172,5 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private static bool HasTileAtWorldPosition(Tilemap tilemap, Vector3 worldPosition)
     {
         return tilemap.HasTile(tilemap.WorldToCell(worldPosition));
-    }
-
-    private static bool IsTooCloseToOccupiedTile(Tilemap tilemap, Vector3 worldPosition)
-    {
-        var centerCell = tilemap.WorldToCell(worldPosition);
-
-        for (var x = -MINIMUM_DISTANCE_FROM_BUILDINGS_AND_STATIC_ITEMS + 1;
-             x < MINIMUM_DISTANCE_FROM_BUILDINGS_AND_STATIC_ITEMS;
-             x++)
-        {
-            for (var y = -MINIMUM_DISTANCE_FROM_BUILDINGS_AND_STATIC_ITEMS + 1;
-                 y < MINIMUM_DISTANCE_FROM_BUILDINGS_AND_STATIC_ITEMS;
-                 y++)
-            {
-                var gridDistance = Mathf.Abs(x) + Mathf.Abs(y);
-
-                if (gridDistance >= MINIMUM_DISTANCE_FROM_BUILDINGS_AND_STATIC_ITEMS)
-                {
-                    continue;
-                }
-
-                if (tilemap.HasTile(centerCell + new Vector3Int(x, y, 0)))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 }
