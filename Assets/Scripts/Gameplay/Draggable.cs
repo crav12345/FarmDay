@@ -12,6 +12,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private RectTransform _draggingPlane;
     private Tilemap _highlightsMap;
     private Tilemap _placeItemsMap;
+    private Tilemap _staticItemsMap;
     private Camera _camera;
     private Vector3Int _highlightedCell;
     private bool _hasHighlightedCell;
@@ -21,6 +22,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _camera = camera;
         _highlightsMap = serializer.HighlightsMap;
         _placeItemsMap = serializer.PlacedItemsMap;
+        _staticItemsMap = serializer.StaticItemsMap;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -67,11 +69,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private void SetHighlightedTile(Vector2 screenPosition)
     {
-        if (_camera == null || _highlightsMap == null || _highlightTile == null)
-        {
-            return;
-        }
-
         var pointerRay = _camera.ScreenPointToRay(screenPosition);
         var tilemapPlane = new Plane(_highlightsMap.transform.forward, _highlightsMap.transform.position);
 
@@ -111,7 +108,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private void TryPlaceTile()
     {
-        if (!_hasHighlightedCell || _highlightsMap == null || _placeItemsMap == null || _tileToPlace == null)
+        if (!_hasHighlightedCell)
         {
             return;
         }
