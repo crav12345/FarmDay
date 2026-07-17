@@ -19,6 +19,8 @@ public class Game : MonoBehaviour
 
         var gameRoom = GameObject.Find(GAME_SCENE_NAME);
         var gameRoomSerializer = gameRoom.GetComponent<GameRoomSerializer>();
+
+        storeController.Initialize(gameRoomSerializer);
     }
 
     public void Run()

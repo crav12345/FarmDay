@@ -389,6 +389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorePresenter
   _view: {fileID: 475452143}
+  _draggables:
+  - {fileID: 999132767}
 --- !u!1 &999132762
 GameObject:
   m_ObjectHideFlags: 0

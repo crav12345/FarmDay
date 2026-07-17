@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -7,6 +8,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     [SerializeField] private Image _dragIcon;
 
     private RectTransform _draggingPlane;
+    private Tilemap _highlightsMap;
+
+    public void Initialize(GameRoomSerializer serializer)
+    {
+        _highlightsMap = serializer.HighlightsMap;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
