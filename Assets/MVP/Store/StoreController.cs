@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class StoreController : MonoBehaviour
@@ -15,6 +16,17 @@ public class StoreController : MonoBehaviour
             draggable.Initialize(serializer, camera);
             draggable.Purchased += OnPurchased;
         }
+
+        foreach (var clickHandler in serializer.TileClickHandlers)
+        {
+            clickHandler.TilePressed += OnTilePressed;
+        }
+    }
+
+    private void OnTilePressed(string arg1, Vector3 vector)
+    {
+        _storeEnabled = false;
+        _view.ToggleStore(_storeEnabled);
     }
 
     public void ToggleStore()

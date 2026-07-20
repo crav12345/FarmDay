@@ -6,6 +6,7 @@ public class ToolsController : MonoBehaviour
 
     private TileMapClickHandler[] _handlers;
     private bool _ordersEnabled;
+    private bool _fieldBubbleEnabled;
 
     public void Initialize(GameRoomSerializer serializer)
     {
@@ -35,6 +36,12 @@ public class ToolsController : MonoBehaviour
             case "orders":
                 _ordersEnabled = true;
                 _view.ToggleBulletin(_ordersEnabled);
+                break;
+            case "plowed_field_0":
+                _fieldBubbleEnabled = true;
+                worldPosition = Camera.main.WorldToScreenPoint(worldPosition);
+
+                _view.ToggleFieldBubble(_fieldBubbleEnabled, worldPosition);
                 break;
             default:
                 break;
