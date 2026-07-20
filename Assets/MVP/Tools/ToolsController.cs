@@ -39,11 +39,11 @@ public class ToolsController : MonoBehaviour
                 break;
             case "plowed_field_0":
                 _fieldBubbleEnabled = true;
-                worldPosition = Camera.main.WorldToScreenPoint(worldPosition);
-
                 _view.ToggleFieldBubble(_fieldBubbleEnabled, worldPosition);
                 break;
             default:
+                _fieldBubbleEnabled = false;
+                _view.ToggleFieldBubble(_fieldBubbleEnabled, worldPosition);
                 break;
         }
     }
